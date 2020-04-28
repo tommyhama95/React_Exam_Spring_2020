@@ -1,0 +1,241 @@
+/*****************  Common  *****************/
+body{
+    margin: 0;
+    background-color: #e3e1e1;
+}
+
+.button{
+    border: solid 3px #2d2c2c;
+    border-radius: 5%;
+}
+
+.button:hover{
+    border: solid 3px #d4cfcf;
+    background-color: #2d2c2c;
+    color: #d4cfcf;
+}
+
+.black_text {
+    color: #262626;
+}
+
+.link{
+    text-decoration: none;
+    color: #d4cfcf;
+    text-shadow: 2px 2px #555353;
+    padding: 0.5rem;
+}
+
+.link:hover{
+    color: #f3f1f1;
+    border: 2px solid #d4cfcf;
+    border-radius: 10px;
+}
+
+.input{
+    border-radius: 10px;
+    border: solid 3px #0f5c79;
+    background-color: #262626;
+    color: #d4cfcf;
+    padding: 0.5rem;
+    margin: 1rem;
+}
+
+/*****************  NotFound  *****************/
+.notFound_container{
+    display: grid;
+    grid-template-rows: 40% 10% 20% 10% 10% 10%;
+    justify-items: center;
+    align-items: center;
+}
+
+.notFound_title{
+    margin-top: 10rem;
+    font-size: 4rem;
+    grid-row: 1;
+    margin-bottom: 6rem;
+}
+
+.notFound_statuscode{
+    font-size: 2rem;
+    grid-row-start: 2;
+    grid-row-end: 2;
+    margin: 0;
+}
+
+.notFound_error{
+    grid-row: 4;
+    font-size: 2rem;
+
+}
+
+.notFound_message{
+    grid-row: 6;
+    font-size: 2rem;
+}
+
+/*****************  HeaderBar  *****************/
+.headerbar{
+    height: 4rem;
+    background-color: #0f5c79;
+    display: grid;
+    grid-template-columns: 10% auto 8% 8% 8%;
+    justify-items: center;
+    align-items: center;
+    padding: 1rem;
+    box-shadow: #171616 -5px 0px 10px;
+}
+
+.header_home_btn{
+    grid-column: 1;
+    font-size: 1.7rem;
+}
+
+.header_title{
+    grid-column: 2;
+    font-size: 2rem;
+    margin: 0;
+}
+
+.header_login{
+    font-size: 2rem;
+}
+
+.header_signup{
+    font-size: 2rem;
+}
+
+.header_or{
+    font-size: 2rem;
+}
+
+.header_username{
+    grid-column: 3 / span 2;
+    font-size: 1.7rem;
+    margin: 0;
+}
+
+.header_logout{
+    grid-column: 5;
+    font-size: 1.4rem;
+    padding: 0.4rem;
+}
+
+
+/*****************  Home  *****************/
+
+
+/*****************  Login  *****************/
+.login_container{
+    display: grid;
+    grid-template-columns: 20% auto 20%;
+    grid-template-rows: 20% auto;
+    justify-items: center;
+    height: 30rem;
+    margin-top: 2rem;
+}
+
+.login_title{
+    grid-column: 2;
+}
+
+.login_input_container{
+    grid-column: 2;
+    display: grid;
+    grid-template-rows: 5% 20% 5% 5% 20% 5% 30% auto;
+}
+
+.login_userTitle{
+    grid-row: 1;
+}
+
+.login_username{
+    grid-row: 2;
+    margin-top: 0;
+}
+
+.login_pswTitle{
+    grid-row: 4;
+}
+
+.login_password{
+    grid-row: 5;
+    margin-top: 0;
+}
+
+.login_button{
+    grid-row: 7;
+    height: 4rem;
+}
+
+/*****************  SignUp  *****************/
+.signup_container{
+    display: grid;
+    grid-template-columns: 30% auto 30%;
+    justify-items: center;
+    height: 100%;
+}
+
+.signup_pswrd_info{
+    margin-top: 5rem;
+    border: solid 2px #000000;
+    border-radius: 20px;
+    background-color: #505050;
+    color: #eae8e8;
+    height: 8rem;
+    padding: 1rem;
+    justify-self: center;
+}
+
+.signup_form{
+    margin-top: 4rem;
+    display: grid;
+    grid-template-rows: auto 5% 10% 5% 5% 10% 5% 5% 10% 15% 20%;
+    height: 30rem;
+}
+
+.signup_title{
+    grid-row: 1;
+    justify-self: center;
+}
+
+.signup_userTitle{
+    grid-row: 2;
+}
+
+.signup_username{
+    grid-row: 3;
+    margin-top: 0;
+    height: 80%
+}
+
+.signup_pswTitle{
+    grid-row: 5;
+}
+
+.signup_password{
+    grid-row: 6;
+    margin-top: 0;
+    height: 80%
+}
+
+.signup_confTitle{
+    grid-row: 8;
+}
+
+.signup_confirmPWD{
+    grid-row: 9;
+    margin-top: 0;
+    height: 80%
+}
+
+.signup_message{
+    grid-row: 10;
+    justify-self: center;
+    padding-top: 2rem;
+    color: red;
+}
+
+.signup_button{
+    grid-row: 11;
+}
