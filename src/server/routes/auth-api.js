@@ -6,45 +6,42 @@ const Users = require("../db/users");
 const router = express.Router();
 
 router.post("/login", passport.authenticate("local"), (req, res) => {
-   res.status(204).send()
-});
-
-router.post("/signup", function (req, res) {
-    const newUser = Users.createUser(req.body.username, req.body.password);
-
-    if(!newUser) {
-        res.status(400).send();
-        return;
-    }
-
-    passport.authenticate("local")(req, res, () => {
-       req.session.save((err) => {
-           if(err) {
-               res.status(500).send();
-           } else {
-               res.status(201).send();
-           }
-        });
-    });
-});
+    res.status(204).send();
+})
 
 router.post("/logout", function (req, res) {
     req.logout();
     res.status(204).send();
 });
 
-router.get("/user", function (req, res) {
-   if(!req.user) {
-       res.status(401).send();
-       return;
-   }
+router.post("/signup", function (req, res) {
+    const created = Users.createUser(req.body.userId, req.body.password);
 
-   res.status(200).json({
-           id: req.user.id,
-           unOpened: req.user.unOpened,
-           opened: req.user.opened
-       }
-   );
+    if(!created) {
+        res.status(400).send();
+        return;
+    }
+
+    passport.authenticate("local")(req, res, () => {
+        req.session.save((err) => {
+            if(err) {
+                res.status(500).send();
+            } else {
+                res.status(201).send();
+            }
+        });
+    });
+});
+
+router.get("/user", function (req, res) {
+    if(!req.user) {
+        res.status(401).send();
+        return;
+    }
+
+    res.status(200).json({
+        id: req.user.id
+    });
 });
 
 module.exports = router;

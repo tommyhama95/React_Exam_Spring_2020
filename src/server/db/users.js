@@ -1,14 +1,11 @@
-
-
 const users = new Map();
-const {getRandomThreeCards} = require("./pokemon");
 
-function getUser(userId) {
-    return users.get(userId);
+function getUser(id) {
+    return users.get(id);
 }
 
-function verifyUser(userId, password) {
-    const user = getUser(userId);
+function verifyUser(id, password) {
+    const user = getUser(id);
 
     if(!user) {
         return false;
@@ -17,25 +14,21 @@ function verifyUser(userId, password) {
     return user.password === password;
 }
 
-function createUser(username, password) {
-
-    if(getUser(username)) {
-        return false;
-    }
-
+function createUser(id, password) {
     const user = {
-        userId: username,
-        password: password,
-        unOpened: [
-            getRandomThreeCards(),
-            getRandomThreeCards(),
-            getRandomThreeCards()
-        ],
-        opened: []
+        id: id,
+        password: password
     };
 
-    users.set(username, user);
+    users.set(id, user);
+    console.log(users)
     return true;
 }
 
-module.exports = {getUser, createUser, verifyUser};
+function resetAllUsers() {
+    users.clear();
+}
+
+
+
+module.exports = {getUser, verifyUser, createUser, resetAllUsers};

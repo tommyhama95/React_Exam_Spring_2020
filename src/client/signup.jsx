@@ -1,4 +1,5 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 
 export class SignUp extends React.Component {
     constructor(props) {
@@ -8,7 +9,7 @@ export class SignUp extends React.Component {
             username: "",
             password: "",
             confirmPsw: "",
-            errorMsg: "",
+            errorMsg: null,
             pswMessage: ""
         }
 
@@ -44,12 +45,12 @@ export class SignUp extends React.Component {
 
                 try {
                     response = await fetch(url, {
-                        method: "POST",
+                        method: "post",
                         headers: {
                             "Content-Type": "application/json"
                         },
                         body: JSON.stringify(payload)
-                    })
+                    });
                 } catch (error) {
                     this.setState({errorMsg:
                         `Failed to connect to server ${error}`
@@ -69,7 +70,7 @@ export class SignUp extends React.Component {
                 }
 
                 this.setState({pswMessage: "Ok"});
-                await this.props.fetchAndUpdateUserLoggedIn();
+                await this.props.fetchAndUpdateUserInfo();
                 this.props.history.push("/");
             }
         } else {
@@ -127,3 +128,5 @@ export class SignUp extends React.Component {
         )
     }
 }
+
+export default withRouter(SignUp);

@@ -6,6 +6,7 @@ import HeaderBar from "./header";
 import {NotFound} from "./notfound";
 import {Login} from "./login";
 import {SignUp} from "./signup";
+import {Home} from "./home";
 
 class App extends React.Component {
     constructor(props) {
@@ -13,40 +14,64 @@ class App extends React.Component {
 
         // TODO: add state if needed
         this.state = {
-            user: null
+            user: null,
+            errorMsg: null,
+            userCount: 1
         }
     }
 
     componentDidMount() {
-        this.fetchAndUpdateUserLoggedIn();
+        this.fetchAndUpdateUserInfo();
+
+        let protocol = "ws:";
+        if(window.location.protocol.toLowerCase() === "https:") {
+            protocol = "wss:";
+        }
+
+        this.socket = new WebSocket(protocol + "//" + window.location.host);
+
+        this.socket.onmessage = (event) => {
+            const dto = JSON.parse(event.data);
+
+            if(!dto || !dto.userCount) {
+                this.setState({userCount: "ERROR"});
+                return;
+            }
+
+            this.setState({userCount: dto.userCount});
+        }
+    }
+
+    componentWillUnmount() {
+        this.socket.close();
     }
 
     // TODO: make async call
-    fetchAndUpdateUserLoggedIn = async () => {
+    fetchAndUpdateUserInfo = async () => {
         const url = "/api/user";
         let response;
 
-        try{
-            response = await fetch(url,{
-                method: "GET"
+        try {
+            response = await fetch(url, {
+                method: "get"
             });
         } catch (error) {
-            this.setState({errorMsg:
-                    `Failed to connect to server ${error}`})
+            this.setState({errorMsg: `Error when connecting to server: ${error}`});
+            return;
         }
 
         if(response.status === 401) {
-            // Will fail on first load up
             this.updateLoggedInUser(null);
             return;
         }
 
-        if(response.status !== 200){
-            // TODO: Make errorMsg to user
+        if(response.status !== 200) {
+            this.setState({ errorMsg: `Different status caught: ${response.status}` });
         } else {
             const payload = await response.json();
             this.updateLoggedInUser(payload);
         }
+
     }
 
     updateLoggedInUser = (user) => {
@@ -67,7 +92,7 @@ class App extends React.Component {
                            render={(props) => (
                                <Login
                                    {...props}
-                                   fetchAndUpdateUserLoggedIn={this.fetchAndUpdateUserLoggedIn}
+                                   fetchAndUpdateUserInfo={this.fetchAndUpdateUserInfo}
                                />
                            )}
                     />
@@ -75,7 +100,7 @@ class App extends React.Component {
                            render={(props) => (
                                <SignUp
                                    {...props}
-                                   fetchAndUpdateUserLoggedIn={this.fetchAndUpdateUserLoggedIn}
+                                   fetchAndUpdateUserInfo={this.fetchAndUpdateUserInfo}
                                />
                            )}
                     />
@@ -84,7 +109,7 @@ class App extends React.Component {
                                <Home
                                    {...props}
                                    user={this.state.user}
-                                   fetchAndUpdateUserLoggedIn={this.fetchAndUpdateUserLoggedIn}
+                                   fetchAndUpdateUserInfo={this.fetchAndUpdateUserInfo}
                                />
                            )}
                     />

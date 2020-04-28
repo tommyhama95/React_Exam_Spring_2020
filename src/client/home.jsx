@@ -11,7 +11,7 @@ export class Home extends React.Component {
 
     componentDidMount() {
         if(this.props.user) {
-            this.props.fetchAndUpdateUserLoggedIn();
+            this.props.fetchAndUpdateUserInfo();
         }
     }
 
@@ -22,6 +22,7 @@ export class Home extends React.Component {
         return(
             <div className={"main_container"}>
                 <h2>{this.state.homeTitle}</h2>
+                <p>Some info about the game here:</p>
             </div>
         )
     }

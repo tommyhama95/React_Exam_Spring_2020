@@ -52,7 +52,7 @@ export class HeaderBar extends React.Component {
         return(
             <div className={"headerbar"}>
                 <Link className={"header_home_btn black_text"} to={"/"} tabIndex="0">Home</Link>
-                <h3 className={"header_title black_text"}>Name of project</h3>
+                <h3 className={"header_title black_text"}>Pokemon Collection</h3>
                 {content}
             </div>
         )
