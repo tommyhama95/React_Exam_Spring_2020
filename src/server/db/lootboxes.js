@@ -21,6 +21,16 @@ function addToLootBox(usersLootId, amount) {
     return true;
 }
 
+function deleteLoot(lootId) {
+
+    // TODO: Issue is here somehow, says it return [ 0 ] as Id
+    console.log(lootId)
+    const status = lootBoxes.delete(lootId);
+    console.log("From loot")
+    console.log(status)
+    return status;
+}
+
 function getLootBoxes(usersLootId) {
     const usersBox = getUsersLootBox(usersLootId);
     const idArray = usersBox.lootID;
@@ -62,4 +72,5 @@ function firstTimeCreatedUser() {
     return lootBoxId;
 }
 
-module.exports = {getUsersLootBox, firstTimeCreatedUser, addToLootBox, getLootBoxes};
+module.exports = {firstTimeCreatedUser, addToLootBox,
+    getLootBoxes, deleteLoot};

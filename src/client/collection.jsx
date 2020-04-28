@@ -106,20 +106,41 @@ export class Collection extends React.Component {
             TODO: Figure out and make better or keep comment above
         */
         const pokemon = lootBox.lootBox.map((loot) => {return loot.item});
+        const lootId = lootBox.lootBox.map((loot) => {return loot.id});
+
         this.setState({pokemon: pokemon, buttonClass: "button_hide"});
 
-        const url = "/api/loots/item";
+        const url = `/api/loots/item/remove`;
         let response;
+        const payload = {id: lootId};
 
         try{
-
-        } catch (error) {
             response = await fetch(url, {
-                method: "delete",
-
-            })
+                method: "post",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(payload)
+            });
+        } catch (error) {
+            this.setState({errorMsg:
+                    `Failed to connect to server: ${error}`
+            });
+            return;
         }
 
+        if(response.status === 401) {
+            this.props.updateLoggedInUser(null);
+            this.props.history.push("/");
+            return;
+        }
+
+
+        if(response.status !== 201){
+            console.log(response.status);
+        }
+
+        console.log("End of delete method on collection")
     }
 
     renderElements() {

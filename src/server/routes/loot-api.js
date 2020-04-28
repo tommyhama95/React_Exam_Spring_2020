@@ -1,6 +1,6 @@
 const express = require("express");
 
-const {getUsersLootBox, addToLootBox, getLootBoxes} = require("../db/lootboxes");
+const {addToLootBox, getLootBoxes, deleteLoot} = require("../db/lootboxes");
 
 const router = express.Router();
 
@@ -31,6 +31,28 @@ router.post("/loots/item", (req, res) => {
 
     res.status(201).send();
 });
+
+
+router.post("/loots/item/remove", (req, res) => {
+
+    console.log(req.user)
+    if(!req.user) {
+        res.status(401).send();
+        return;
+    }
+
+    const lootId = req.body.id;
+    const deletedLootStatus = deleteLoot(lootId);
+
+    // TODO: Id send in does not correspond to correct ID
+
+    if(deletedLootStatus) {
+       res.status(201).send();
+    } else {
+        res.status(404).send();
+    }
+
+})
 
 
 module.exports = router;
