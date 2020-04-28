@@ -1,5 +1,7 @@
 const users = new Map();
 
+const {firstTimeCreatedUser} = require("./lootboxes");
+
 function getUser(id) {
     return users.get(id);
 }
@@ -15,13 +17,14 @@ function verifyUser(id, password) {
 }
 
 function createUser(id, password) {
+
     const user = {
         id: id,
-        password: password
+        password: password,
+        lootId: firstTimeCreatedUser()
     };
 
     users.set(id, user);
-    console.log(users)
     return true;
 }
 

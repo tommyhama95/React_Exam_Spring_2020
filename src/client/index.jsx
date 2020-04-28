@@ -7,6 +7,7 @@ import {NotFound} from "./notfound";
 import {Login} from "./login";
 import {SignUp} from "./signup";
 import {Home} from "./home";
+import {Collection} from "./collection";
 
 class App extends React.Component {
     constructor(props) {
@@ -85,9 +86,19 @@ class App extends React.Component {
         return (
             <BrowserRouter>
                 <div>
-                    <HeaderBar userId={user}/>
+                    <HeaderBar userId={user} updateLoggedInUser={this.updateLoggedInUser}/>
                 </div>
                 <Switch>
+                    <Route exact path={"/collection"}
+                           render={(props) => (
+                               <Collection
+                                   {...props}
+                                   user={user}
+                                   fetchAndUpdateUserInfo={this.fetchAndUpdateUserInfo}
+                               />
+                           )}
+
+                    />
                     <Route exact path={"/login"}
                            render={(props) => (
                                <Login
@@ -108,7 +119,7 @@ class App extends React.Component {
                            render={(props) => (
                                <Home
                                    {...props}
-                                   user={this.state.user}
+                                   user={user}
                                    fetchAndUpdateUserInfo={this.fetchAndUpdateUserInfo}
                                />
                            )}

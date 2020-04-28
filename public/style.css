@@ -15,6 +15,14 @@ body{
     color: #d4cfcf;
 }
 
+.button_show{
+    display: block;
+}
+
+.button_hide{
+    display: none;
+}
+
 .black_text {
     color: #262626;
 }
@@ -39,6 +47,10 @@ body{
     color: #d4cfcf;
     padding: 0.5rem;
     margin: 1rem;
+}
+
+.bck_blue{
+    background-color: #0f5c79;
 }
 
 /*****************  NotFound  *****************/

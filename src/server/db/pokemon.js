@@ -64,18 +64,24 @@ const pokemon = [
 
 // For some pokeball is known to hold 1 pokemon, therefore it is also
 // used in the code below.
-function getRandomThreeCards() {
-    const pokeCollection = new Map();
-    let counter = 0;
+function getPokemonCardItem() {
+    const pokeCollection = [];
 
     for(let i = 0; i <= 2; i++) {
         const x = Math.floor(pokemon.length * Math.random());
         const pokeball = pokemon[x];
-        pokeCollection.set(counter, pokeball);
-        counter++;
+        pokeCollection.push(pokeball);
     };
 
-    return Array.from(pokeCollection).map(p => pokemon[p]);
+    return pokeCollection;
 }
 
-module.exports = {getRandomThreeCards, pokemon};
+function countPokemonAvailable() {
+    return pokemon.length;
+}
+
+function getAllPokemon() {
+    return pokemon;
+}
+
+module.exports = {getPokemonCardItem, pokemon, countPokemonAvailable, getAllPokemon};

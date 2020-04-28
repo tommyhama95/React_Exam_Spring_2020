@@ -69,7 +69,6 @@ export class SignUp extends React.Component {
                     });
                 }
 
-                this.setState({pswMessage: "Ok"});
                 await this.props.fetchAndUpdateUserInfo();
                 this.props.history.push("/");
             }

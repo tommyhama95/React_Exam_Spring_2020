@@ -88,7 +88,6 @@ test("3. Signup fields entered value & Criteria Approved", () => {
     expect(driver.state().username).toBe(user);
     expect(driver.state().password).toBe(password);
     expect(driver.state().confirmPsw).toBe(confirmPsw);
-    expect(driver.state().pswMessage).toBe("Ok");
 });
 
 test("4. Password not matching", () => {

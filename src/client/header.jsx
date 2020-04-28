@@ -6,8 +6,26 @@ export class HeaderBar extends React.Component {
         super(props);
     }
 
-    doLogOutUser = async () => {
+    doLogoutUser = async () => {
+        const url = "/api/logout";
+        let response;
 
+        try{
+            response = await fetch(url, {
+                method: "post"
+            })
+        } catch (error) {
+            alert(`Failed connection to server: ${error}`);
+            return;
+        }
+
+        if(response.status !== 204) {
+            alert(`Error when connecting to server with status code: ${response.status}`);
+            return;
+        }
+
+        this.props.updateLoggedInUser(null);
+        this.props.history.push("/");
     }
 
     renderNotLoggedIn() {
