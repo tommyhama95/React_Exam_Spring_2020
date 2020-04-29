@@ -226,10 +226,10 @@ export class Collection extends React.Component {
         return (
             <>
                 <div className={"lootbox_main_container"}>
-                    <div className={"loot_amount"}>Lootboxes available: {this.state.available}</div>
-                    <button className={`${this.state.buttonClass} button`}
+                    <button className={`${this.state.buttonClass} button coll_button`}
                             onClick={() => {this.openLoot("button_hide")}}
                     >Open 1 loot</button>
+                    <div className={"loot_amount"}>Lootboxes available: {this.state.available}</div>
                 </div>
             </>
         )
@@ -239,7 +239,7 @@ export class Collection extends React.Component {
         const pokemonContent = this.state.tableContent;
         const pokemonArray = getAllPokemon();
 
-
+        // If the same name is found, add to its number
         if(pokemonContent.length !== 0) {
             for(let i = 0; i < pokemonArray.length; i++) {
                 for(let n = 0; n < pokemonContent.length; n++) {
@@ -250,9 +250,6 @@ export class Collection extends React.Component {
             }
 
         }
-
-        console.log(pokemonArray)
-
 
         return(
             <div>
@@ -287,6 +284,8 @@ export class Collection extends React.Component {
         )
     }
 
+
+
     render() {
         const lootBox = this.state.loot;
 
@@ -297,9 +296,10 @@ export class Collection extends React.Component {
 
         if(this.state.lootMsg) {
             lootHTML =
-                <div>
-                    <div>You are out of Lootboxes for Pokemon =(</div>
-                    <button onClick={this.getAnotherLootItem}>Buy one more</button>
+                <div className={"loot_opened"}>
+                    <button className={"coll_button button"}
+                        onClick={this.getAnotherLootItem}>Buy one more</button>
+                    <div className={"loot_amount"}>You are out of Lootboxes for Pokemon =(</div>
                 </div>
         }
 
@@ -311,14 +311,15 @@ export class Collection extends React.Component {
 
             openedLoot =
                 <div className={"loot_opened"}>
+                    <button className={"coll_button button"}
+                        onClick={() => {
+                        this.setState({buttonClass: "button_show", pokemon: null})
+                        this.getLootBox();
+                    }}>OK</button>
                     <div className={"loot_msg"}>You got:</div>
                     <div className={"pokemon_1"}>{pokemon[0].name}</div>
                     <div className={"pokemon_2"}>{pokemon[1].name}</div>
                     <div className={"pokemon_3"}>{pokemon[2].name}</div>
-                    <button onClick={() => {
-                        this.setState({buttonClass: "button_show", pokemon: null})
-                        this.getLootBox();
-                    }}>OK</button>
                 </div>
         }
 
@@ -328,11 +329,11 @@ export class Collection extends React.Component {
         }
 
         return(
-            <div>
+            <div className={"collection_container"}>
                 <div className={"collection_title"}>Your collection</div>
                 {lootHTML}
                 {openedLoot}
-                <div className={"collection_table_container"}>
+                <div className={"table_container_collection"}>
                     {tableHTML}
                 </div>
             </div>

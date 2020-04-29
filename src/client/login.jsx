@@ -62,9 +62,12 @@ export class Login extends React.Component {
 
 
     render() {
+        const errormsg = this.state.errorMsg ? this.state.errorMsg : "";
+
         return(
             <div className={"login_container"}>
                 <h3 className={"login_title"}>Login</h3>
+                <div className={"login_errorMsg"}>{errormsg}</div>
                 <div className={"login_input_container"}>
                     <div className={"login_userTitle"}>Username:</div>
                     <input className={"login_username input"}

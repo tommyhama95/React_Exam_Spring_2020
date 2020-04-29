@@ -53,6 +53,32 @@ body{
     background-color: #0f5c79;
 }
 
+/****** Common table ******/
+.pokemon_table{
+    background-color: #2d2c2c;
+    color: #f3f1f1;
+    border: solid 5px #0f5c79;
+    width: 100%;
+}
+
+.tablehead_row{
+    text-align: left;
+}
+
+.border_left_white{
+    border-left: white solid 2px;
+}
+
+th {
+    border-bottom: solid 2px green;
+    margin: 0;
+}
+
+
+tr:nth-child(even) {
+    background-color: #4b4a4a;
+}
+
 /*****************  NotFound  *****************/
 .notFound_container{
     display: grid;
@@ -135,13 +161,27 @@ body{
 
 
 /*****************  Home  *****************/
+.main_container{
+    padding-left: 25%;
+    width: 50%;
+}
+
+.home_small_title{
+    padding-left: 25%;
+    padding-top: 2rem;
+}
+
+.pokemon_collection{
+    padding-left: 25%;
+    width: 50%;
+}
 
 
 /*****************  Login  *****************/
 .login_container{
     display: grid;
     grid-template-columns: 20% auto 20%;
-    grid-template-rows: 20% auto;
+    grid-template-rows: 15% 5% auto;
     justify-items: center;
     height: 30rem;
     margin-top: 2rem;
@@ -151,8 +191,14 @@ body{
     grid-column: 2;
 }
 
+.login_errorMsg{
+    grid-column: 2;
+    grid-row: 2;
+}
+
 .login_input_container{
     grid-column: 2;
+    grid-row: 3;
     display: grid;
     grid-template-rows: 5% 20% 5% 5% 20% 5% 30% auto;
 }
@@ -179,6 +225,8 @@ body{
     grid-row: 7;
     height: 4rem;
 }
+
+
 
 /*****************  SignUp  *****************/
 .signup_container{
@@ -251,3 +299,45 @@ body{
 .signup_button{
     grid-row: 11;
 }
+
+
+/*****************  Collection  *****************/
+.collection_container {
+    display: grid;
+    grid-template-columns: 20% 10% auto;
+
+}
+
+.collection_title {
+    padding: 1rem;
+    font-size: 3rem;
+    grid-column: 1 /span 2;
+
+}
+
+.lootbox_main_container{
+    grid-column: 1;
+    justify-self: center;
+}
+
+
+.loot_opened{
+    grid-column: 1;
+    justify-self: center;
+    padding-left: 15%;
+}
+
+.table_container_collection{
+    position: relative;
+
+    padding-right: 5%;
+    grid-column: 3;
+}
+
+.coll_button{
+justify-self: center;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+

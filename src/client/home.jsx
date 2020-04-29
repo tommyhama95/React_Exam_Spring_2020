@@ -8,8 +8,6 @@ const pokemon = require("../server/db/pokemon");
 export class Home extends React.Component {
     constructor(props) {
         super(props);
-
-
     }
 
     componentDidMount() {
@@ -43,7 +41,8 @@ export class Home extends React.Component {
     }
 
     loggedInHTML() {
-        const user = `Welcome ${this.props.user.id}`
+        console.log(this.props.user)
+        const user = `Welcome ${this.props.user}`
 
         return(
             <React.Fragment>
@@ -67,18 +66,18 @@ export class Home extends React.Component {
                 <thead className={"table_head"}>
                 <tr className={"tablehead_row"}>
                     <th>Name</th>
-                    <th>Type 1</th>
-                    <th>Type 2</th>
+                    <th className={"border_left_white"}>Type 1</th>
+                    <th className={"border_left_white"}>Type 2</th>
                 </tr>
                 </thead>
                 <tbody className={"tablebody"}>
                 {pokeArray.map((poke) => (
                     <tr className={"tablerow"} key={poke.name}>
                         <td className={"tb_name"}>{poke.name}</td>
-                        <td className={`tb_type ${poke.type[0]}`}>
+                        <td className={`border_left_white ${poke.type[0]}`}>
                             {poke.type[0]}
                         </td>
-                        <td className={`tb_type2 ${poke.type[1]}`}>
+                        <td className={`border_left_white ${poke.type[1]}`}>
                             {poke.type[1]}
                         </td>
                     </tr>
@@ -101,7 +100,7 @@ export class Home extends React.Component {
         return(
             <>
                 {html}
-                <div>Available pokemon is in table below</div>
+                <div className={"home_small_title"}>Available pokemon is in table below</div>
                 <div className={"pokemon_collection"}>
                     {this.renderPokemon()}
                 </div>
