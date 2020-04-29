@@ -4,7 +4,7 @@ const {MemoryRouter} = require("react-router-dom");
 
 const {Login} = require("../../src/client/login");
 const {overrideFetch, asyncCheckCondition} = require("../mytest-utils");
-const app = require("../../src/server/app");
+const {app} = require("../../src/server/app");
 
 const {createUser, resetAllUsers, getUser} = require("../../src/server/db/users");
 

@@ -38,6 +38,9 @@ function getPokemonBoxForUser(usersStorageId) {
 function addPokemonsToStorageBox(pokemons, usersStorageId) {
 
     const usersStorageBox = storageBox.get(usersStorageId);
+    if(!usersStorageBox) {
+        return false;
+    }
     const pokeBox = usersStorageBox.pokeBox;
 
     // Will happen only on first load up
@@ -80,10 +83,16 @@ function addPokemonsToStorageBox(pokemons, usersStorageId) {
 
 // Removes amount of that one pokemon requested
 function removeFromStorageBox(pokemon, amount) {
+ // TODO:
+}
 
+function deleteAll() {
+    storageBox.clear();
+    pokemonBox.clear();
 }
 
 module.exports = {
     addPokemonsToStorageBox, removeFromStorageBox,
-    createStorageBoxForUser, getPokemonBoxForUser
+    createStorageBoxForUser, getPokemonBoxForUser,
+    deleteAll
 };

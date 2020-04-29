@@ -11,17 +11,23 @@ const storageAPI = require("./routes/pokestorage-api");
 
 const Users = require("./db/users");
 
+const WsHandler = require("./ws-handler");
+
 const app = express();
 
 app.use(bodyParser.json());
 
-app.use(express.static("public"));
+
+WsHandler.init(app);
+
 
 app.use(session({
     secret: "a secret used to encrypt session cookies",
     resave: false,
     saveUninitialized: false
 }));
+
+app.use(express.static("public"));
 
 passport.use(new LocalStrategy(
     {
@@ -68,4 +74,4 @@ app.use((req, res, next) => {
     res.sendFile(path.resolve(__dirname, "..", "..", "public", "index.html"));
 });
 
-module.exports = app;
+module.exports = {app};

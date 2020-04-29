@@ -3,7 +3,7 @@ const { mount } = require("enzyme");
 const {StaticRouter} = require("react-router-dom")
 
 const {HeaderBar} = require("../../src/client/header");
-const app = require("../../src/server/app");
+const {app} = require("../../src/server/app");
 const { overrideFetch, asyncCheckCondition } = require("../mytest-utils");
 
 
