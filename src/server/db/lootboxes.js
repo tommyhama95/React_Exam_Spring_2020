@@ -7,7 +7,6 @@ const lootBoxes = new Map();
 const {getPokemonCardItem} = require("./pokemon");
 
 let userBoxIdCounter = 0;
-
 let lootBoxIdCounter = 0;
 
 // Return usersLootBox
@@ -46,12 +45,23 @@ function deleteLoot(lootId, usersLootId) {
     return true;
 }
 
-// Always return first lootbox
+// Always return first lootbox and amount available for user
 function getLootBox(usersLootId) {
     const usersBox = getUsersLootBox(usersLootId);
     const idArray = usersBox.lootID;
+    const item = lootBoxes.get(idArray[0]);
 
-    return lootBoxes.get(idArray[0]);
+    let box;
+    if(!item) {
+        box = false;
+    } else {
+        box = {
+            loot: item,
+            available: idArray.length
+        }
+    }
+
+    return box;
 }
 
 
@@ -75,12 +85,9 @@ function firstTimeCreatedUser() {
     userBoxIdCounter++;
 
     const loot = createLootItem();
-
-    // TODO: Delete second loot
-    const secLoot = createLootItem();
-
-    const lootIds = {lootID: [loot.id, secLoot.id]};
-
+    const loot2 = createLootItem();
+    const loot3 = createLootItem();
+    const lootIds = {lootID: [loot.id, loot2.id, loot3.id]};
 
     usersLootBox.set(lootBoxId, lootIds);
     return lootBoxId;

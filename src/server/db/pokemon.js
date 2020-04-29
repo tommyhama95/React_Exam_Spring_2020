@@ -1,64 +1,84 @@
 const pokemon = [
     {
         name: "Blastoise",
-        type: ["Water"]
+        type: ["Water"],
+        amount: 0
     },    {
         name: "Charizard",
-        type: ["Fire", "Flying"]
+        type: ["Fire", "Flying"],
+        amount: 0
     },    {
         name: "Venusaur",
-        type: ["Grass", "Poison"]
+        type: ["Grass", "Poison"],
+        amount: 0
     },    {
         name: "Meganium",
-        type: ["Grass"]
+        type: ["Grass"],
+        amount: 0
     },    {
         name: "Typhlosion",
-        type: ["Fire"]
+        type: ["Fire"],
+        amount: 0
     },    {
         name: "Feraligatr",
-        type: ["Water"]
+        type: ["Water"],
+        amount: 0
     },    {
         name: "Sceptile",
-        type: ["Grass"]
+        type: ["Grass"],
+        amount: 0
     },    {
         name: "Blaziken",
-        type: ["Fire"]
+        type: ["Fire"],
+        amount: 0
     },    {
         name: "Swampert",
-        type: ["Water", "Ground"]
+        type: ["Water", "Ground"],
+        amount: 0
     },    {
         name: "Torterra",
-        type: ["Grass", "Ground"]
+        type: ["Grass", "Ground"],
+        amount: 0
     },    {
         name: "Infernape",
-        type: ["Fire", "Fighting"]
+        type: ["Fire", "Fighting"],
+        amount: 0
     },    {
         name: "Empoleon",
-        type: ["Water", "Steel"]
+        type: ["Water", "Steel"],
+        amount: 0
     },    {
         name: "Dragonite",
-        type: ["Flying", "Dragon"]
+        type: ["Flying", "Dragon"],
+        amount: 0
     },    {
         name: "Tyranitar",
-        type: ["Rock", "Dark"]
+        type: ["Rock", "Dark"],
+        amount: 0
     },    {
         name: "Salamence",
-        type: ["Flying", "Dragon"]
+        type: ["Flying", "Dragon"],
+        amount: 0
     },    {
         name: "Metagross",
-        type: ["Steel", "Psychic"]
+        type: ["Steel", "Psychic"],
+        amount: 0
     },    {
         name: "Garchomp",
-        type: ["Ground", "Dragon"]
+        type: ["Ground", "Dragon"],
+        amount: 0
     },    {
         name: "Raikou",
-        type: ["Electric"]
+        type: ["Electric"],
+        amount: 0
     },    {
         name: "Entei",
-        type: ["Fire"]
+        type: ["Fire"],
+        amount: 0
     },    {
         name: "Suicune",
-        type: ["Water"]
+        type: ["Water"],
+        amount: 0
     }
 ];
 

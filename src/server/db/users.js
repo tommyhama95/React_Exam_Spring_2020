@@ -1,6 +1,8 @@
+// Key: username, Value: info about user
 const users = new Map();
 
 const {firstTimeCreatedUser} = require("./lootboxes");
+const {createStorageBoxForUser} = require("./storageBox");
 
 function getUser(id) {
     return users.get(id);
@@ -21,17 +23,20 @@ function createUser(id, password) {
     const user = {
         id: id,
         password: password,
-        lootId: firstTimeCreatedUser()
+        lootId: firstTimeCreatedUser(),
+        storageId: createStorageBoxForUser()
     };
 
+
+
     users.set(id, user);
+    console.log(user)
     return true;
 }
 
 function resetAllUsers() {
     users.clear();
 }
-
 
 
 module.exports = {getUser, verifyUser, createUser, resetAllUsers};

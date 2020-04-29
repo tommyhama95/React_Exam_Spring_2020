@@ -51,7 +51,7 @@ router.post("/loots/item/remove", (req, res) => {
     const deletedLootStatus = deleteLoot(lootId, req.user.lootId);
 
     if(deletedLootStatus) {
-       res.status(201).send();
+       res.status(201).send(deletedLootStatus);
     } else {
         res.status(404).send();
     }
