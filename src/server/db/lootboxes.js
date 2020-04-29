@@ -1,4 +1,4 @@
-// Key: users loot id, Value: array of looBoxes Id's
+// Key: users loot id, Value: array of looBoxes Id's this user has
 const usersLootBox = new Map();
 
 // Key: lootbox's id, Value: array of pokemon
@@ -10,39 +10,50 @@ let userBoxIdCounter = 0;
 
 let lootBoxIdCounter = 0;
 
+// Return usersLootBox
 function getUsersLootBox(lootBoxId) {
      return usersLootBox.get(lootBoxId);
-
 }
 
+// adds x amount new lootBoxes to usersLootBox
 function addToLootBox(usersLootId, amount) {
+    const loot = createLootItem();
+    const usersLootBox = getUsersLootBox(usersLootId);
+    const idArray = usersLootBox.lootID;
 
-    // TODO later after fixing general layout
+    idArray.push(loot.id);
     return true;
 }
 
-function deleteLoot(lootId) {
+// Find usersLootbox, get its ids and remove lootId from userslootbox and lootbox
+function deleteLoot(lootId, usersLootId) {
+    const lootStatus = lootBoxes.delete(lootId);
+    // If given Id does not exist
+    if(!lootStatus) {
+        return false;
+    }
 
-    // TODO: Issue is here somehow, says it return [ 0 ] as Id
-    console.log(lootId)
-    const status = lootBoxes.delete(lootId);
-    console.log("From loot")
-    console.log(status)
-    return status;
+    const usersLootBox = getUsersLootBox(usersLootId);
+    const idArray = usersLootBox.lootID;
+
+    // Id does not exist on this user
+    const index = idArray.indexOf(lootId);
+    if(index === -1) {
+        return false;
+    }
+
+    idArray.splice(index, 1);
+    return true;
 }
 
-function getLootBoxes(usersLootId) {
+// Always return first lootbox
+function getLootBox(usersLootId) {
     const usersBox = getUsersLootBox(usersLootId);
     const idArray = usersBox.lootID;
 
-    const mapOfUsersLoot = [];
-    for(let i = 0; i < idArray.length; i++) {
-        const items = lootBoxes.get(idArray[i]);
-        mapOfUsersLoot.push(items);
-    }
-
-    return mapOfUsersLoot;
+    return lootBoxes.get(idArray[0]);
 }
+
 
 // Create & save new loot box (id, and array of pokemon's)
 function createLootItem() {
@@ -65,12 +76,15 @@ function firstTimeCreatedUser() {
 
     const loot = createLootItem();
 
-    const lootIds = {lootID: [loot.id]};
+    // TODO: Delete second loot
+    const secLoot = createLootItem();
+
+    const lootIds = {lootID: [loot.id, secLoot.id]};
+
 
     usersLootBox.set(lootBoxId, lootIds);
-    console.log(usersLootBox)
     return lootBoxId;
 }
 
 module.exports = {firstTimeCreatedUser, addToLootBox,
-    getLootBoxes, deleteLoot};
+    getLootBox, deleteLoot};

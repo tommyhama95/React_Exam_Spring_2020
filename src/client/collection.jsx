@@ -7,8 +7,8 @@ export class Collection extends React.Component {
         this.state = {
             user: null,
             loot: null,
+            lootMsg: null,
             errorMsg: null,
-            buttonVisible: true,
             buttonClass: "button_show",
             pokemon: null
         }
@@ -37,12 +37,14 @@ export class Collection extends React.Component {
             });
         }
 
+        // User not logged in and is forced to Home page
         if(response.status === 401) {
             this.props.updateLoggedInUser(null);
             this.props.history.push("/");
             return;
         }
 
+        // Something else unexpected happened, maybe 500
         if(response.status !== 200) {
             this.setState({errorMsg:
                     `Failed connection to server: Status code: ${response.status}`
@@ -50,11 +52,14 @@ export class Collection extends React.Component {
             return;
         }
 
+        // Lootbox was retrieved
         const lootBox = await response.json();
-        console.log(lootBox)
-        this.setState({
-            loot: lootBox
-        });
+        if(lootBox.loot === "EMPTY") {
+            // User is out of lootboxes
+            this.setState({loot: null, lootMsg: true});
+        } else {
+            this.setState({loot: lootBox});
+        }
     }
 
     getAnotherLootItem = async () => {
@@ -95,20 +100,18 @@ export class Collection extends React.Component {
     }
 
 
-    displayLoot() {
 
 
-    }
 
-    openLoot = async (style, lootBox) => {
-        /*  For some unknown reason as of now the lootbox gets packed inside more
-            object per sent as parameter. As such im getting a lootbox-ception unpacking.
-            TODO: Figure out and make better or keep comment above
-        */
-        const pokemon = lootBox.lootBox.map((loot) => {return loot.item});
-        const lootId = lootBox.lootBox.map((loot) => {return loot.id});
+    // Opens loot from this state earlier retrieved from getLootBox function
+    openLoot = async (style) => {
+        const {loot} = this.state;
 
-        this.setState({pokemon: pokemon, buttonClass: "button_hide"});
+        const pokemon = loot.item;
+        const lootId = loot.id
+
+        // Since pokemon is saved it is safe to remove loot to have it ready for
+        // next lootbox if user has one
 
         const url = `/api/loots/item/remove`;
         let response;
@@ -135,27 +138,22 @@ export class Collection extends React.Component {
             return;
         }
 
-
         if(response.status !== 201){
             console.log(response.status);
         }
 
-        console.log("End of delete method on collection")
+        this.setState({pokemon: pokemon, buttonClass: "button_hide", loot: null});
     }
 
-    renderElements() {
+    renderLootElements() {
         const lootBox = this.state.loot;
         return (
             <>
                 <div className={"lootbox_main_container"}>
                     <div className={"loot_amount"}>Lootboxes available: {lootBox.length}</div>
-                    <button className={this.state.buttonClass}
-                            onClick={() => {this.openLoot("button_hide", {lootBox})}}
+                    <button className={`${this.state.buttonClass} button`}
+                            onClick={() => {this.openLoot("button_hide")}}
                     >Open 1 loot</button>
-
-                </div>
-                <div className={"collection_main_container"}>
-
                 </div>
             </>
         )
@@ -165,13 +163,17 @@ export class Collection extends React.Component {
     render() {
         const lootBox = this.state.loot;
 
-        let html = <div></div>;
+        let lootHTML = <div></div>;
         if(lootBox) {
-            html = this.renderElements();
+            lootHTML = this.renderLootElements();
         }
 
-        if(this.state.buttonClass === "button_hide") {
-
+        if(this.state.lootMsg) {
+            lootHTML =
+                <div>
+                    <div>You are out of Lootboxes for Pokemon =(</div>
+                    <button onClick={this.getAnotherLootItem}>Buy one more</button>
+                </div>
         }
 
         console.log(this.state.pokemon)
@@ -183,16 +185,21 @@ export class Collection extends React.Component {
         if(pokemon) {
             openedLoot =
                 <div className={"loot_opened"}>
-                    <div className={"pokemon_1"}>{pokemon[0][0].name}</div>
-                    <div className={"pokemon_2"}>{pokemon[0][1].name}</div>
-                    <div className={"pokemon_3"}>{pokemon[0][2].name}</div>
+                    <div className={"loot_msg"}>You got:</div>
+                    <div className={"pokemon_1"}>{pokemon[0].name}</div>
+                    <div className={"pokemon_2"}>{pokemon[1].name}</div>
+                    <div className={"pokemon_3"}>{pokemon[2].name}</div>
+                    <button onClick={() => {
+                        this.setState({buttonClass: "button_show", pokemon: null})
+                        this.getLootBox();
+                    }}>OK</button>
                 </div>
         }
 
         return(
             <div>
                 <div className={"collection_title"}>Your collection</div>
-                {html}
+                {lootHTML}
                 {openedLoot}
             </div>
         )
