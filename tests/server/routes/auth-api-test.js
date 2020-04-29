@@ -1,9 +1,7 @@
 const request = require("supertest");
 const {app} = require("../../../src/server/app");
-
+// TODO: Make it more visual that it's his
 // Code below is based and some parts copied from Andrea's code from lecture
-
-
 
 test("#1 Fail login", async () => {
     const response = await request(app)

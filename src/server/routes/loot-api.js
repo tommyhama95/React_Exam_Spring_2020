@@ -30,9 +30,8 @@ router.post("/loots/item", (req, res) => {
         return;
     }
 
-    const amount = req.body.amount;
     const usersLootId = req.user.lootId;
-    addToLootBox(usersLootId, amount);
+    addToLootBox(usersLootId);
 
     res.status(201).send();
 });
@@ -40,14 +39,12 @@ router.post("/loots/item", (req, res) => {
 
 router.post("/loots/item/remove", (req, res) => {
 
-    console.log(req.user)
     if(!req.user) {
         res.status(401).send();
         return;
     }
 
     const lootId = req.body.id;
-    console.log(req.body)
     const deletedLootStatus = deleteLoot(lootId, req.user.lootId);
 
     if(deletedLootStatus) {

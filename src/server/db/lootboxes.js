@@ -60,7 +60,6 @@ function getLootBox(usersLootId) {
             available: idArray.length
         }
     }
-
     return box;
 }
 

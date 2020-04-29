@@ -70,7 +70,6 @@ export class Collection extends React.Component {
     }
 
     getAnotherLootItem = async () => {
-        const payload = {amount: 1};
 
         const url = "/api/loots/item";
         let response;
@@ -80,8 +79,7 @@ export class Collection extends React.Component {
                 method: "post",
                 headers: {
                   "Content-Type": "application/json"
-                },
-                body: JSON.stringify(payload)
+                }
             });
         } catch (error) {
             this.setState({errorMsg:
