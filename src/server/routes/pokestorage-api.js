@@ -44,7 +44,7 @@ router.post("/storage/pokemon", (req, res) => {
         res.status(401).send()
         return;
     }
-
+    //TODO: Make it possible to sell and get currency for it
 
 
 

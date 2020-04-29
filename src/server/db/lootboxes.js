@@ -15,7 +15,7 @@ function getUsersLootBox(lootBoxId) {
 }
 
 // adds x amount new lootBoxes to usersLootBox
-function addToLootBox(usersLootId, amount) {
+function addToLootBox(usersLootId) {
     const loot = createLootItem();
     const usersLootBox = getUsersLootBox(usersLootId);
     const idArray = usersLootBox.lootID;
@@ -93,5 +93,11 @@ function firstTimeCreatedUser() {
     return lootBoxId;
 }
 
+function deleteAll(){
+    usersLootBox.clear();
+    lootBoxes.clear();
+}
+
 module.exports = {firstTimeCreatedUser, addToLootBox,
-    getLootBox, deleteLoot};
+    getLootBox, deleteLoot, createLootItem, getUsersLootBox,
+    deleteAll};
