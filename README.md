@@ -1,10 +1,10 @@
-#Pokémon Collection
+# Pokémon Collection
 
-##PGR6301 Webdevelopment and API
+## PG6301 Webdevelopment and API
 ##### Spring 2020 - University of Kristiania, Oslo
 ##### 48hr individual home exam (28.04-30.04)
 
-##About Exam
+## About Exam
 In this years exam the assignment was to create a SPA of a Cacha game. Theme was opened
 to whatever wanted, and for that reason I chose Pokémon.
 
@@ -17,7 +17,7 @@ testing of frontend and backend implementation.
 Other languages, such as TypeScript, CoffeScipt, etc. Was prohibited on this exam.
 <br>
  
-##What is Pokémon Collection?
+## What is Pokémon Collection?
 Pokémon Collection is a webpage based Lootbox system where users of the system is required
 to make an account in order to collect Pokémon. As of now the total possible to collect only holds 20 Pokémon.
 Upon opening the website you'll be greated to Home page where there are some small instructions of how the system works.
@@ -29,7 +29,7 @@ So since there isn't anything stopping the user from aquiring more it could be f
 would take to aquire 20 of each Pokémon.
 
 
-##Implementations and technologies
+## Implementations and technologies
 Since this is a first time experience with React, Enzyme and Jest, most of the implementations were hard to grasp at first.
 It hasn't been until the closing end of the lecture and exam time that I have gotten the grasp of
 how the system works and what some parts of the codes does.
@@ -56,7 +56,7 @@ For each of these there have been created an API call handling methods for simul
 API handling can be found under src/server/routes/
 
 
-##Requirements implemented, tried to and not done
+## Requirements implemented, tried to and not done
 In this part I have (tried my best) to implemented R1, R2, R3 and R4. R5 I took an early approach of implementing 
 password requirements with the help of Regex.
 
@@ -106,7 +106,7 @@ that could help me fix it. This was mostly affected on the components for Collec
 This problem made it so that simulating a fetching of who the user is could not be done. There might be something that I have missed on this, so again, feedbacks are amazing if it's do-able.
 
 
-##How to start this project in your localhost:8080
+## How to start this project in your localhost:8080
 
 First download the repository. 
 
