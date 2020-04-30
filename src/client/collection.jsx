@@ -283,7 +283,6 @@ export class Collection extends React.Component {
     }
 
 
-
     render() {
         const lootBox = this.state.loot;
 
@@ -321,14 +320,17 @@ export class Collection extends React.Component {
                 </div>
         }
 
+
         let tableHTML = <div></div>;
         if(this.state.tableContent) {
             tableHTML = this.renderTable();
         }
 
+
         return(
             <div className={"collection_container"}>
                 <div className={"collection_title"}>Your collection</div>
+
                 {lootHTML}
                 {openedLoot}
                 <div className={"table_container_collection"}>

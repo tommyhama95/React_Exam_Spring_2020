@@ -18,7 +18,7 @@ router.get("/storage", (req, res) => {
 
     const payload = getPokemonBoxForUser(req.user.storageId);
 
-    if(payload) {
+    if(payload.length > 0) {
         res.status(200).send(payload);
     } else {
         const emptyLoad = { msg: "EMPTY"};
@@ -35,19 +35,7 @@ router.post("/storage", (req, res) => {
 
     addPokemonsToStorageBox(req.body.array, req.user.storageId)
 
-    res.status(201).send()
-});
-
-router.post("/storage/pokemon", (req, res) => {
-
-    if(!req.user) {
-        res.status(401).send()
-        return;
-    }
-    //TODO: Make it possible to sell and get currency for it
-
-
-
+    res.status(201).send();
 });
 
 
