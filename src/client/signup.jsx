@@ -1,6 +1,13 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 
+/********************************************************************
+ *    Most of code for fetching data and more from API is taken     *
+ *          and based on code from lecture by lecturer:             *
+ *                      arcuri82 on Github                          *
+ * Link: https://github.com/arcuri82/web_development_and_api_design *
+ ********************************************************************/
+
 export class SignUp extends React.Component {
     constructor(props) {
         super(props);
@@ -15,19 +22,24 @@ export class SignUp extends React.Component {
 
     }
 
+    // Saves username in state for later use
     onHandleUsername = event => {
         this.setState({username: event.target.value})
     }
 
+    // Save password in state for later user
     onHandlePassword = event => {
         this.setState({password: event.target.value});
     }
 
+    // Save second input of password for
     onHandleConfirm = event => {
         this.setState({confirmPsw: event.target.value});
     }
 
-    // TODO: Change for api call
+
+    // Get saved states, check if password meets criteria
+    // and if password & confirm are identical, THEN sign up
     onHandleSignUp = async () => {
         const {username, password, confirmPsw} = this.state;
 
@@ -84,8 +96,8 @@ export class SignUp extends React.Component {
         return regexp.test(password);
     }
 
+    /*** Self written code ***/
     render() {
-
 
         return(
             <div className={"signup_container"}>

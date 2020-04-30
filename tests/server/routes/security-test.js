@@ -6,11 +6,9 @@ const {app} = require("../../../src/server/app");
  *                                                         *
  * In this implementation of the assignment there have     *
  * been no usage of difference in accounts, so there is    *
- * no testing for 403 since user doesn't have by default   *
- * the authorization for it.                               *
+ *                  no testing for 403                     *
  **********************************************************/
 const status = 401;
-
 
 // Auth-api
 test("User 401: Not logged in, no access", async () => {

@@ -1,14 +1,19 @@
+/********************************************************************
+ *      Most of code is based on code from lecture by lecturer:     *
+ *                      arcuri82 on Github                          *
+ * Link: https://github.com/arcuri82/web_development_and_api_design *
+ ********************************************************************/
+
 const React = require("react");
 const { mount } = require("enzyme");
 const {StaticRouter} = require("react-router-dom")
 
 const {HeaderBar} = require("../../src/client/header");
 const {app} = require("../../src/server/app");
-const { overrideFetch, asyncCheckCondition } = require("../mytest-utils");
+const { overrideFetch } = require("../mytest-utils");
 
 
-// Todo: make it async later and with corresponding function call
-test("1. User not logged in, all rendered", () => {
+test("#1. User not logged in, all rendered", () => {
     const userId = null;
 
     const driver = mount(
@@ -23,8 +28,8 @@ test("1. User not logged in, all rendered", () => {
     expect(html.includes("Home")).toEqual(true);
 });
 
-// Todo: make it async later and with corresponding function call
-test("2. User logged in, all rendered", () => {
+
+test("#2. User logged in, all rendered", () => {
     const userId = "Test";
 
     const driver = mount(

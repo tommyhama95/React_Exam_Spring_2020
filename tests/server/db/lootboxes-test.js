@@ -1,8 +1,15 @@
+/************************************************************
+ *                                                          *
+ *  Self written code, but some parts based on lecture code *
+ *                                                          *
+ * **********************************************************/
+
 const {firstTimeCreatedUser, addToLootBox,
     getUsersLootBox, getLootBox, deleteAll,
     deleteLoot} = require("../../../src/server/db/lootboxes");
 
 beforeEach(deleteAll);
+
 
 test("#1 Create and check first item", () => {
     const usersLootId = firstTimeCreatedUser();
@@ -18,6 +25,7 @@ test("#1 Create and check first item", () => {
     expect(item.loot.id).toBe(0);
 });
 
+
 test("#2 Delete first loot as in opening in UI", () => {
     const usersLootId = firstTimeCreatedUser();
     const item = getLootBox(usersLootId);
@@ -26,6 +34,7 @@ test("#2 Delete first loot as in opening in UI", () => {
     const deleted = deleteLoot(itemLootId, usersLootId);
     expect(deleted).toEqual(true);
 });
+
 
 test("#3 Add another LootBox on user", () => {
     const usersLootId = firstTimeCreatedUser();
@@ -41,12 +50,16 @@ test("#3 Add another LootBox on user", () => {
     expect(updatedLootBox.lootID.length).toBe(4);
 });
 
+
 test("#4 Delete all +1 more, and failed lootbox getting", () => {
     const usersLootId = firstTimeCreatedUser();
 
+    // Loop trough 4 times
     for(let i = 0; i < 4; i++) {
         const item = getLootBox(usersLootId);
         if(i === 3) {
+            // On 3 lootBox the get should not be able to retrieve lootbox
+            // as this lootbox does not exist
             expect(item).toEqual(false)
         } else {
             const itemLootId = item.loot.id;
@@ -55,6 +68,7 @@ test("#4 Delete all +1 more, and failed lootbox getting", () => {
             if(i < 3){
                 expect(deleted).toEqual(true);
             } else {
+                // Unable to delete non-existen lootbox
                 expect(deleted).toEqual(false)
             }
         }

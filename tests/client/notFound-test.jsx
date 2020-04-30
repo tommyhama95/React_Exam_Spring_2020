@@ -1,3 +1,9 @@
+/************************************************************
+ *                                                          *
+ *  Self written code, but some parts based on lecture code *
+ *                                                          *
+ * **********************************************************/
+
 const React = require("react");
 const { mount } = require("enzyme");
 

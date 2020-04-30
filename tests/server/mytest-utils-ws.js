@@ -1,3 +1,9 @@
+/********************************************************************
+ *           Fully copied and based on code from lecturer.          *
+ *                      arcuri82 on Github                          *
+ * Link: https://github.com/arcuri82/web_development_and_api_design *
+ ********************************************************************/
+
 // Origin: shared/mytest-utils-ws.js
 
 const WS = require('ws');

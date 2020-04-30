@@ -1,3 +1,9 @@
+/********************************************************************
+ *      Most of code is based on code from lecture by lecturer:     *
+ *                      arcuri82 on Github                          *
+ * Link: https://github.com/arcuri82/web_development_and_api_design *
+ ********************************************************************/
+
 const React = require("react");
 const {mount} = require("enzyme");
 const {MemoryRouter} = require("react-router-dom");
@@ -48,7 +54,8 @@ test("#1. Rendered in", () => {
 
 
 // NB! This test doesnt 100% test out login functionality since the redirecting
-// and actual creation of user isn't tested. Tried this in test #3 below
+// and actual creation of user isn't tested.
+// This was tried to implement in #3
 test("#2. Login fields entered value, valid login", async () => {
     overrideFetch(app);
 
@@ -68,13 +75,14 @@ test("#2. Login fields entered value, valid login", async () => {
 });
 
 
-
-
 /** Test I could not get to work because of issues about it saying     **/
 /**  "await this.props.fetchAndUpdateUserInfo() <= is not a function"  **/
+/**  Ended up being test I could not get past and could therefor not   **/
+/**  test rest of rendering for this page in this test file.           **/
+
 
 /*******************************************************************
- test("3. Login fields entered value, valid login", async () => {
+ test("#3. Login fields entered value, valid login", async () => {
     overrideFetch(app);
 
     const user = "Test";

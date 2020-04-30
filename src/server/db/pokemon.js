@@ -82,6 +82,12 @@ const pokemon = [
     }
 ];
 
+/************************************************************
+ *                                                          *
+ *  Self written code, but some parts based on lecture code *
+ *                                                          *
+ * **********************************************************/
+
 // For some pokeball is known to hold 1 pokemon, therefore it is also
 // used in the code below.
 function getPokemonCardItem() {
@@ -96,10 +102,12 @@ function getPokemonCardItem() {
     return pokeCollection;
 }
 
+// Returns length of pokemon array
 function countPokemonAvailable() {
     return pokemon.length;
 }
 
+// Returns all content of Pokemon array
 function getAllPokemon() {
     return pokemon;
 }

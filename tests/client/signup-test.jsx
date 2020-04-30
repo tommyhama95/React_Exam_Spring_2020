@@ -3,7 +3,7 @@ const {mount} = require("enzyme");
 
 const {SignUp} = require("../../src/client/signup");
 
-
+// Checks rendering of Password criteria information on page
 function checkPasswordCriteriaInfo(driver) {
     const html = driver.html();
 
@@ -20,7 +20,7 @@ function checkPasswordCriteriaInfo(driver) {
     expect(infoTitle.text()).toBe("Password must contain following:");
 }
 
-
+// Checks rendering of signup form for user
 function checkInputForm(driver) {
     const html = driver.html();
 
@@ -44,6 +44,7 @@ function checkInputForm(driver) {
     expect(button).toBeDefined();
 };
 
+// Fills out information on signup form
 function fillInSignUpFields(driver, user, password, confirmPsw) {
     const userInput = driver.find(".signup_username");
     userInput.instance().value = user;
@@ -64,18 +65,19 @@ function fillInSignUpFields(driver, user, password, confirmPsw) {
 }
 
 
-test("1. Render password info components", () => {
+test("#1. Render password info components", () => {
     const driver = mount(<SignUp/>);
     checkPasswordCriteriaInfo(driver);
 });
 
 
-test("2. Render input form components", () => {
+test("#2. Render input form components", () => {
    const driver = mount(<SignUp/>);
    checkInputForm(driver);
 });
 
-test("3. Signup fields entered value & Criteria Approved", () => {
+
+test("#3. Signup fields entered value & Criteria Approved", () => {
     const driver = mount(<SignUp/>);
     checkInputForm(driver);
 
@@ -90,7 +92,8 @@ test("3. Signup fields entered value & Criteria Approved", () => {
     expect(driver.state().confirmPsw).toBe(confirmPsw);
 });
 
-test("4. Password not matching", () => {
+
+test("#4. Password not matching", () => {
     const driver = mount(<SignUp/>);
     checkInputForm(driver);
 
@@ -106,7 +109,8 @@ test("4. Password not matching", () => {
     expect(driver.state().pswMessage).toBe("Password not matching");
 });
 
-test("5. Password not meeting criteria", () => {
+
+test("#5. Password not meeting criteria", () => {
     const driver = mount(<SignUp/>);
     checkInputForm(driver);
 
@@ -120,4 +124,4 @@ test("5. Password not meeting criteria", () => {
     expect(driver.state().password).toBe(password);
     expect(driver.state().confirmPsw).toBe(confirmPsw);
     expect(driver.state().pswMessage).toBe("Password Criteria not met");
-})
+});

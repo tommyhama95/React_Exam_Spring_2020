@@ -36,9 +36,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">80% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>4/5</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
@@ -153,7 +153,14 @@
 <a name='L95'></a><a href='#L95'>95</a>
 <a name='L96'></a><a href='#L96'>96</a>
 <a name='L97'></a><a href='#L97'>97</a>
-<a name='L98'></a><a href='#L98'>98</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L98'></a><a href='#L98'>98</a>
+<a name='L99'></a><a href='#L99'>99</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -170,13 +177,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">12x</span>
-<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">12x</span>
-<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">13x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -238,10 +245,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -249,13 +252,18 @@
 <span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/************************************************************
- StorageBox is something that is known in the pokemon games
- as a place to store your pokemon's.
- This file is for storing or removing pokemon a user has
- aquired trough lootboxes
- ***********************************************************/
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/****************************************************************
+*   StorageBox is something that is known in the pokemon games  *
+*               as a place to store your pokemon's.             *
+*      This file is for storing or removing pokemon a user has  *
+*                   aquired trough lootboxes.                   *
+*****************************************************************/
+&nbsp;
+/************************************************************
+ *                                                          *
+ *  Self written code, but some parts based on lecture code *
+ *                                                          *
+ ************************************************************/
 &nbsp;
 // Key: userID, Value: array of pokemonBox
 const storageBox = new Map();
@@ -276,7 +284,7 @@ function createStorageBoxForUser() {
     return id;
 }
 &nbsp;
-&nbsp;
+// Returns pokemon box for this user
 function getPokemonBoxForUser(usersStorageId) {
     const usersStorageBox = storageBox.get(usersStorageId);
     const pokeBox = usersStorageBox.pokeBox;
@@ -333,20 +341,15 @@ function addPokemonsToStorageBox(pokemons, usersStorageId) {
 }
 &nbsp;
 &nbsp;
-// Removes amount of that one pokemon requested
-function <span class="fstat-no" title="function not covered" >removeFromStorageBox(</span>pokemon, amount) {
- // TODO:
-}
-&nbsp;
+// Clear all data
 function deleteAll() {
     storageBox.clear();
     pokemonBox.clear();
 }
 &nbsp;
 module.exports = {
-    addPokemonsToStorageBox, removeFromStorageBox,
-    createStorageBoxForUser, getPokemonBoxForUser,
-    deleteAll
+    addPokemonsToStorageBox, deleteAll,
+    createStorageBoxForUser, getPokemonBoxForUser
 };</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -354,7 +357,7 @@ module.exports = {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Thu Apr 30 2020 03:05:03 GMT+0200 (GMT+02:00)
+                at Thu Apr 30 2020 04:31:21 GMT+0200 (GMT+02:00)
             </div>
         </div>
         <script src="..\..\prettify.js"></script>

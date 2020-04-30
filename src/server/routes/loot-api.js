@@ -1,3 +1,9 @@
+/************************************************************
+ *                                                          *
+ *  Self written code, but some parts based on lecture code *
+ *                                                          *
+ * **********************************************************/
+
 const express = require("express");
 
 const {addToLootBox, getLootBox, deleteLoot} = require("../db/lootboxes");
@@ -5,6 +11,7 @@ const {addToLootBox, getLootBox, deleteLoot} = require("../db/lootboxes");
 const router = express.Router();
 
 
+// Return lootbox on this user id
 router.get("/loots", (req, res) => {
 
     if(!req.user) {
@@ -22,7 +29,7 @@ router.get("/loots", (req, res) => {
     }
 });
 
-
+// Adds 1 more lootbox on user
 router.post("/loots/item", (req, res) => {
 
     if(!req.user) {
@@ -36,7 +43,7 @@ router.post("/loots/item", (req, res) => {
     res.status(201).send();
 });
 
-
+// Removes the opened lootbox from user
 router.post("/loots/item/remove", (req, res) => {
 
     if(!req.user) {
@@ -53,6 +60,5 @@ router.post("/loots/item/remove", (req, res) => {
         res.status(404).send();
     }
 });
-
 
 module.exports = router;

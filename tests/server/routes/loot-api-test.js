@@ -1,3 +1,9 @@
+/************************************************************
+ *                                                          *
+ *  Self written code, but some parts based on lecture code *
+ *                                                          *
+ * **********************************************************/
+
 const request = require("supertest");
 const {app} = require("../../../src/server/app");
 
@@ -103,7 +109,7 @@ test("#3 Fail to remove loot that does not exist", async () => {
     expect(response.statusCode).toBe(404);
 });
 
-test("#4 Get 'EMPTY' after opened all", async () => {
+test("#4 Get 'EMPTY' after openening all", async () => {
     const user = "TestUserBox_4";
 
     const agent = request.agent(app);

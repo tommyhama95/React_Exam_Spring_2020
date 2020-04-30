@@ -1,5 +1,12 @@
+/************************************************************
+ *                                                          *
+ *  Self written code, but some parts based on lecture code *
+ *                                                          *
+ * **********************************************************/
+
 const request = require("supertest");
 const {app} = require("../../../src/server/app");
+
 
 test("#1 Get box, and store pokemons", async () => {
     const user = "TestStorageUser_1";

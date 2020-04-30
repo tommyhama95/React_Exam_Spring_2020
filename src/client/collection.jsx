@@ -2,12 +2,18 @@ import React from "react";
 
 const {getAllPokemon} = require("../server/db/pokemon");
 
+/********************************************************************
+ *    Most of code for fetching data and more from API is taken     *
+ *          and based on code from lecture by lecturer:             *
+ *                      arcuri82 on Github                          *
+ * Link: https://github.com/arcuri82/web_development_and_api_design *
+ ********************************************************************/
+
 export class Collection extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            user: null,
             loot: null,
             lootMsg: null,
             errorMsg: null,
@@ -20,13 +26,14 @@ export class Collection extends React.Component {
     componentDidMount() {
         if(this.props.user) {
             this.props.fetchAndUpdateUserInfo();
-            this.getLootBox();
-            this.updateTable();
+            this.getLootBox(); // loads up 1 lootbox at the time
+            this.updateTable(); // Updates table wether loot opened or not
         } else {
             this.props.history.push("/");
         }
     }
 
+    // Async function to call for 1 lootbox to be ready for opening
     getLootBox = async () => {
         const url = "/api/loots";
         let response;
@@ -41,7 +48,7 @@ export class Collection extends React.Component {
             });
         }
 
-        // User not logged in and is forced to Home page
+        // User not in session or logged in, forced to home page
         if(response.status === 401) {
             this.props.updateLoggedInUser(null);
             this.props.history.push("/");
@@ -58,19 +65,21 @@ export class Collection extends React.Component {
 
         // Lootbox was retrieved
         const lootBox = await response.json();
-        console.log(lootBox)
+
+        /*** Self written code ***/
         if(lootBox.loot === "EMPTY") {
             // User is out of lootboxes
             this.setState({loot: null, lootMsg: true, available: null});
         } else {
+            // User still has lootbox available
             this.setState({
                 loot: lootBox.loot, lootMsg: false, available: lootBox.available
             });
         }
     }
 
+    // When user is empty if available lootboxes and requestes another one
     getAnotherLootItem = async () => {
-
         const url = "/api/loots/item";
         let response;
 
@@ -88,12 +97,14 @@ export class Collection extends React.Component {
             return;
         }
 
+        // User not in session or logged in, forced to home page
         if(response.status === 401) {
             this.props.updateLoggedInUser(null);
             this.props.history.push("/");
             return;
         }
 
+        // Lootbox was added to user because of unkown reason
         if(response.status !== 201) {
             this.setState({errorMsg:
                 `Error when connecting to server: Status code: ${response.status}`
@@ -101,19 +112,17 @@ export class Collection extends React.Component {
             return;
         }
 
+        // Lootbox available to get
         this.setState({lootMsg: null});
         this.getLootBox();
     }
 
     // Opens loot from this state earlier retrieved from getLootBox function
-    openLoot = async (style) => {
+    openLoot = async () => {
         const {loot} = this.state;
 
         const pokemon = loot.item;
         const lootId = loot.id
-
-        // Since pokemon is saved it is safe to remove loot to have it ready for
-        // next lootbox if user has one
 
         const url = `/api/loots/item/remove`;
         let response;
@@ -134,20 +143,24 @@ export class Collection extends React.Component {
             return;
         }
 
+        // User not in session or logged in, forced to home page
         if(response.status === 401) {
             this.props.updateLoggedInUser(null);
             this.props.history.push("/");
             return;
         }
 
+        // Unkown status happened while deleting lootId from user
         if(response.status !== 201){
             console.log(response.status);
         }
 
+        // LootId is deleted, show pokemon and save them to user
         this.setState({pokemon: pokemon, buttonClass: "button_hide", loot: null});
         await this.addToStorage();
     }
 
+    // Save the revealed Pokemon on users pokestorage db
     addToStorage = async () => {
         const {pokemon} = this.state;
 
@@ -171,12 +184,14 @@ export class Collection extends React.Component {
             return;
         }
 
+        // User not in session or logged in, forced to home page
         if(response.status === 401) {
             this.props.updateLoggedInUser(null);
             this.props.history.push("/");
             return;
         }
 
+        // Unkown error happened while saving pokemon to pokeStorage
         if(response.status !== 201) {
             this.setState({errorMsg:
                     `Error when connecting to server: Status code: ${response.status}`
@@ -184,9 +199,12 @@ export class Collection extends React.Component {
             return ;
         }
 
+        // Show update to catched table
         await this.updateTable();
     }
 
+
+    // Get Pokemon from pokestorage to render what is aquired and not
     updateTable = async () => {
         const url = "/api/storage";
         let response;
@@ -202,12 +220,14 @@ export class Collection extends React.Component {
             return;
         }
 
+        // User not in session or logged in, forced to home page
         if(response.status === 401) {
             this.props.updateLoggedInUser(null);
             this.props.history.push("/");
             return;
         }
 
+        // Did not get pokemons from pokeStorage db for unkown reason
         if(response.status !== 200) {
             this.setState({errorMsg:
                     `Error when connecting to server: Status code: ${response.status}`
@@ -215,10 +235,13 @@ export class Collection extends React.Component {
             return ;
         }
 
+        // Update state for tableContent to be loaded on webpage
         const payload = await response.json();
         this.setState({tableContent: payload});
     }
 
+    // HTML for when user can open a Lootbox
+    /*** Self written code ***/
     renderLootElements() {
         const lootBox = this.state.loot;
         return (
@@ -233,6 +256,8 @@ export class Collection extends React.Component {
         )
     }
 
+    // Renders same table as in Home page, but with aquired pokemons updated
+    /*** Self written code ***/
     renderTable() {
         const pokemonContent = this.state.tableContent;
         const pokemonArray = getAllPokemon();
@@ -282,7 +307,7 @@ export class Collection extends React.Component {
         )
     }
 
-
+    /*** Self written code ***/
     render() {
         const lootBox = this.state.loot;
 
@@ -291,6 +316,9 @@ export class Collection extends React.Component {
             lootHTML = this.renderLootElements();
         }
 
+        // What is state lootMsg?
+        // lootMsg is when the user is out of lootboxes to open.
+        // When that happens this lootHTMl version will be rendered.
         if(this.state.lootMsg) {
             lootHTML =
                 <div className={"loot_opened"}>
@@ -300,12 +328,13 @@ export class Collection extends React.Component {
                 </div>
         }
 
-        console.log(this.state.pokemon)
-        const pokemon = this.state.pokemon;
 
         let openedLoot = <div></div>;
-        if(pokemon) {
+        const pokemon = this.state.pokemon;
 
+        // What is state pokemon?
+        // The 3 pokemon obtained from Lootbox opened
+        if(pokemon) {
             openedLoot =
                 <div className={"loot_opened"}>
                     <button className={"coll_button button"}
@@ -330,7 +359,6 @@ export class Collection extends React.Component {
         return(
             <div className={"collection_container"}>
                 <div className={"collection_title"}>Your collection</div>
-
                 {lootHTML}
                 {openedLoot}
                 <div className={"table_container_collection"}>

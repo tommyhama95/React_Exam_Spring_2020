@@ -1,9 +1,15 @@
+/****************************************************************
+*   StorageBox is something that is known in the pokemon games  *
+*               as a place to store your pokemon's.             *
+*      This file is for storing or removing pokemon a user has  *
+*                   aquired trough lootboxes.                   *
+*****************************************************************/
+
 /************************************************************
- StorageBox is something that is known in the pokemon games
- as a place to store your pokemon's.
- This file is for storing or removing pokemon a user has
- aquired trough lootboxes
- ***********************************************************/
+ *                                                          *
+ *  Self written code, but some parts based on lecture code *
+ *                                                          *
+ ************************************************************/
 
 // Key: userID, Value: array of pokemonBox
 const storageBox = new Map();
@@ -24,11 +30,10 @@ function createStorageBoxForUser() {
     return id;
 }
 
-
+// Returns pokemon box for this user
 function getPokemonBoxForUser(usersStorageId) {
     const usersStorageBox = storageBox.get(usersStorageId);
     const pokeBox = usersStorageBox.pokeBox;
-    console.log(pokeBox);
 
     return pokeBox;
 }
@@ -81,18 +86,13 @@ function addPokemonsToStorageBox(pokemons, usersStorageId) {
 }
 
 
-// Removes amount of that one pokemon requested
-function removeFromStorageBox(pokemon, amount) {
- // TODO:
-}
-
+// Clear all data
 function deleteAll() {
     storageBox.clear();
     pokemonBox.clear();
 }
 
 module.exports = {
-    addPokemonsToStorageBox, removeFromStorageBox,
-    createStorageBoxForUser, getPokemonBoxForUser,
-    deleteAll
+    addPokemonsToStorageBox, deleteAll,
+    createStorageBoxForUser, getPokemonBoxForUser
 };

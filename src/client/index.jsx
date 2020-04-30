@@ -9,11 +9,17 @@ import {SignUp} from "./signup";
 import {Home} from "./home";
 import {Collection} from "./collection";
 
+/********************************************************************
+ *    Most of code for fetching data and more from API is taken     *
+ *          and based on code from lecture by lecturer:             *
+ *                      arcuri82 on Github                          *
+ * Link: https://github.com/arcuri82/web_development_and_api_design *
+ ********************************************************************/
+
 class App extends React.Component {
     constructor(props) {
         super(props);
 
-        // TODO: add state if needed
         this.state = {
             user: null,
             errorMsg: null,
@@ -21,6 +27,7 @@ class App extends React.Component {
         }
     }
 
+    // When component mounts, fetch user if session is still on
     componentDidMount() {
         this.fetchAndUpdateUserInfo();
 
@@ -47,7 +54,8 @@ class App extends React.Component {
         this.socket.close();
     }
 
-    // TODO: make async call
+    // Gets user IF logged/signed in
+    // Called by self or by child components of Index
     fetchAndUpdateUserInfo = async () => {
         const url = "/api/user";
         let response;
@@ -61,26 +69,28 @@ class App extends React.Component {
             return;
         }
 
+        // User not logged in, update data
         if(response.status === 401) {
             this.updateLoggedInUser(null);
             return;
         }
 
+        // Unkown reason could not aquire user
         if(response.status !== 200) {
             this.setState({ errorMsg: `Different status caught: ${response.status}` });
         } else {
             const payload = await response.json();
             this.updateLoggedInUser(payload);
         }
-
     }
 
+    // Sets state of user which is sent as props to child components
+    // or update by child components
     updateLoggedInUser = (user) => {
         this.setState({user: user})
     }
 
     render() {
-
         const user = this.state.user ? this.state.user.id : null;
 
         return (

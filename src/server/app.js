@@ -1,3 +1,9 @@
+/********************************************************************
+ *           Fully copied and based on code from lecturer.          *
+ *                      arcuri82 on Github                          *
+ * Link: https://github.com/arcuri82/web_development_and_api_design *
+ ********************************************************************/
+
 const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");

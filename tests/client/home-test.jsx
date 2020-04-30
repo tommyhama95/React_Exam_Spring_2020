@@ -1,10 +1,16 @@
+/********************************************************************
+ *      Most of code is based on code from lecture by lecturer:     *
+ *                      arcuri82 on Github                          *
+ * Link: https://github.com/arcuri82/web_development_and_api_design *
+ ********************************************************************/
+
 const React = require("react");
 const {mount} = require("enzyme");
 const {MemoryRouter} = require("react-router-dom");
 
 const {Home} = require("../../src/client/home");
 
-
+// Checks if basic components are rendered in driver
 function checkHomeRendered(driver) {
     const title = driver.find(".home_title");
     expect(title.text()).toBe("Welcome to Pokemon Collection");
@@ -29,7 +35,7 @@ test("#1. Rendered in", () => {
     expect(rendered).toEqual(true);
 });
 
-// Code below is copied and based on code from Andrea's
+
 test("#2. Rendered in with logged in user", () => {
     const user = {id: "Test1", password: "Testtest12", lootId: 0, storageId: 0};
 

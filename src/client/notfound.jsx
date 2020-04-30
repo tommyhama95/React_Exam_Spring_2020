@@ -1,10 +1,13 @@
 import React from "react";
 
+    /*** Self written code ***/
+
 export class NotFound extends React.Component {
     constructor(props) {
         super(props);
     }
 
+    // Only renders if user requested a page not available
     render() {
         return(
             <div className={"notFound_container"}>

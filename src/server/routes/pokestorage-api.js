@@ -1,14 +1,18 @@
+/************************************************************
+ *                                                          *
+ *  Self written code, but some parts based on lecture code *
+ *                                                          *
+ * **********************************************************/
+
 const express = require("express");
 
 const { addPokemonsToStorageBox,
-        removeFromStorageBox,
-        createStorageBoxForUser,
         getPokemonBoxForUser
 } = require("../db/storageBox");
 
-
 const router = express.Router();
 
+// Get storage box of users obtained pokemon
 router.get("/storage", (req, res) => {
 
     if(!req.user) {
@@ -26,6 +30,7 @@ router.get("/storage", (req, res) => {
     }
 });
 
+// Stores the 3 pokemon obtained from Lootbox
 router.post("/storage", (req, res) => {
 
     if(!req.user) {

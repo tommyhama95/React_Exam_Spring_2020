@@ -1,5 +1,12 @@
 import React from "react";
 
+/********************************************************************
+ *    Most of code for fetching data and more from API is taken     *
+ *          and based on code from lecture by lecturer:             *
+ *                      arcuri82 on Github                          *
+ * Link: https://github.com/arcuri82/web_development_and_api_design *
+ ********************************************************************/
+
 export class Login extends React.Component {
     constructor(props) {
         super(props);
@@ -12,15 +19,17 @@ export class Login extends React.Component {
 
     }
 
+    // Saves username to state for later
     onUsernameHandler = event => {
         this.setState({userId: event.target.value})
     }
 
+    // Saves password to state for later
     onPasswordHandler = event => {
         this.setState({password: event.target.value})
     }
 
-    //TODO: call to api to log in
+    // Log in user with previous set states of username and password
     doLogIn = async () => {
         const {userId, password} = this.state;
 
@@ -43,11 +52,13 @@ export class Login extends React.Component {
             return;
         }
 
+        // Username and/or password not correct
         if(response.status === 401) {
             this.setState({errorMsg: "Invalid username/password"});
             return;
         }
 
+        // Other unkown reason for not valid login
         if(response.status !== 204) {
             this.setState({errorMsg:
                     `Error when connecting to server: Status code: ${response.status}`
@@ -55,15 +66,16 @@ export class Login extends React.Component {
             return;
         }
 
+        // Login success, update parent component and redirect to Home page
         this.setState({errorMsg: null});
         await this.props.fetchAndUpdateUserInfo();
         this.props.history.push("/");
     }
 
-
     render() {
         const errormsg = this.state.errorMsg ? this.state.errorMsg : "";
 
+        /*** Self written code ***/
         return(
             <div className={"login_container"}>
                 <h3 className={"login_title"}>Login</h3>
@@ -85,8 +97,7 @@ export class Login extends React.Component {
                     />
                     <button className={"button login_button"}
                             onClick={this.doLogIn}
-                    >
-                        Login</button>
+                    >Login</button>
                 </div>
             </div>
         )

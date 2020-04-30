@@ -1,5 +1,10 @@
-const express_ws = require('express-ws');
+/********************************************************************
+ *           Fully copied and based on code from lecturer.          *
+ *                      arcuri82 on Github                          *
+ * Link: https://github.com/arcuri82/web_development_and_api_design *
+ ********************************************************************/
 
+const express_ws = require('express-ws');
 
 let ews;
 

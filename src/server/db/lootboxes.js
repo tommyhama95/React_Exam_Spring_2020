@@ -1,3 +1,9 @@
+/************************************************************
+ *                                                          *
+ *  Self written code, but some parts based on lecture code *
+ *                                                          *
+ * **********************************************************/
+
 // Key: users loot id, Value: array of looBoxes Id's this user has
 const usersLootBox = new Map();
 
@@ -14,7 +20,7 @@ function getUsersLootBox(lootBoxId) {
      return usersLootBox.get(lootBoxId);
 }
 
-// adds x amount new lootBoxes to usersLootBox
+// Adds 1 LootBox on user
 function addToLootBox(usersLootId) {
     const loot = createLootItem();
     const usersLootBox = getUsersLootBox(usersLootId);
@@ -33,23 +39,23 @@ function deleteLoot(lootId, usersLootId) {
     }
 
     const usersLootBox = getUsersLootBox(usersLootId);
-    const idArray = usersLootBox.lootID;
+    const lootIdArray = usersLootBox.lootID;
 
     // Id does not exist on this user
-    const index = idArray.indexOf(lootId);
+    const index = lootIdArray.indexOf(lootId);
     if(index === -1) {
         return false;
     }
 
-    idArray.splice(index, 1);
+    lootIdArray.splice(index, 1);
     return true;
 }
 
 // Always return first lootbox and amount available for user
 function getLootBox(usersLootId) {
     const usersBox = getUsersLootBox(usersLootId);
-    const idArray = usersBox.lootID;
-    const item = lootBoxes.get(idArray[0]);
+    const lootIdArray = usersBox.lootID;
+    const item = lootBoxes.get(lootIdArray[0]);
 
     let box;
     if(!item) {
@@ -57,7 +63,7 @@ function getLootBox(usersLootId) {
     } else {
         box = {
             loot: item,
-            available: idArray.length
+            available: lootIdArray.length
         }
     }
     return box;
@@ -92,6 +98,7 @@ function firstTimeCreatedUser() {
     return lootBoxId;
 }
 
+// Clears all of data
 function deleteAll(){
     usersLootBox.clear();
     lootBoxes.clear();

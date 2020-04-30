@@ -1,7 +1,12 @@
 import React from "react";
-import {Link, withRouter} from "react-router-dom";
+import {Link} from "react-router-dom";
 
-
+/********************************************************************
+ *    Most of code for fetching data and more from API is taken     *
+ *          and based on code from lecture by lecturer:             *
+ *                      arcuri82 on Github                          *
+ * Link: https://github.com/arcuri82/web_development_and_api_design *
+ ********************************************************************/
 
 const pokemon = require("../server/db/pokemon");
 
@@ -16,11 +21,14 @@ export class Home extends React.Component {
         }
     }
 
+    // Gets and returns all registered pokemon for the game
+    /*** Self written code ***/
     countPokemonInDB() {
         return pokemon.countPokemonAvailable();
     }
 
-
+    // When user is NOT logged in
+    /*** Self written code ***/
     notLoggedInHTML() {
         const amount = this.countPokemonInDB();
         return(
@@ -40,8 +48,9 @@ export class Home extends React.Component {
         )
     }
 
+    // When user HAS logged in/signed up
+    /*** Self written code ***/
     loggedInHTML() {
-        console.log(this.props.user)
         const user = `Welcome ${this.props.user}`
 
         return(
@@ -58,6 +67,8 @@ export class Home extends React.Component {
         )
     }
 
+    // Renders table of collection to be collected
+    /*** Self written code ***/
     renderPokemon() {
         const pokeArray = pokemon.getAllPokemon();
 
@@ -87,6 +98,8 @@ export class Home extends React.Component {
         );
     }
 
+    // Basic rendering of previous functions
+    /*** Self written code ***/
     render() {
 
         let html;
