@@ -5,8 +5,8 @@ import { Link, withRouter } from "react-router-dom"
  *    Most of code for fetching data and more from API is taken     *
  *          and based on code from lecture by lecturer:             *
  *                      arcuri82 on Github                          *
- * Link: https://github.com/arcuri82/web_development_and_api_design *
  ********************************************************************/
+/**Link: https://github.com/arcuri82/web_development_and_api_design/blob/master/exercise-solutions/quiz-game/part-10/src/client/headerbar.jsx **/
 
 export class HeaderBar extends React.Component {
     constructor(props) {

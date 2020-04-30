@@ -4,8 +4,8 @@ import React from "react";
  *    Most of code for fetching data and more from API is taken     *
  *          and based on code from lecture by lecturer:             *
  *                      arcuri82 on Github                          *
- * Link: https://github.com/arcuri82/web_development_and_api_design *
  ********************************************************************/
+/** Link:https://github.com/arcuri82/web_development_and_api_design/blob/master/exercise-solutions/quiz-game/part-10/src/client/match.jsx **/
 
 export class Login extends React.Component {
     constructor(props) {

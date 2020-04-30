@@ -2,8 +2,8 @@
  *    Most of code for fetching data and more from API is taken     *
  *          and based on code from lecture by lecturer:             *
  *                      arcuri82 on Github                          *
- * Link: https://github.com/arcuri82/web_development_and_api_design *
  ********************************************************************/
+/** Link: https://github.com/arcuri82/web_development_and_api_design/blob/master/exercise-solutions/quiz-game/part-10/src/server/routes/auth-api.js **/
 
 const express = require("express");
 const passport = require("passport");
@@ -53,6 +53,15 @@ router.get("/user", function (req, res) {
     res.status(200).json({
         id: req.user.id
     });
+});
+
+// Not used API calls
+router.put("/user", function (req, res)  {
+
+});
+
+router.delete("/user/id", function (req, res) {
+
 });
 
 

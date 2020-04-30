@@ -1,3 +1,9 @@
+/********************************************************************
+ *      Most of code is based on code from lecture by lecturer:     *
+ *                      arcuri82 on Github                          *
+ ********************************************************************/
+/** Link: https://github.com/arcuri82/web_development_and_api_design/blob/master/exercise-solutions/quiz-game/part-10/tests/client/headerbar-test.jsx **/
+
 const React = require("react");
 const {mount} = require("enzyme");
 

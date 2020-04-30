@@ -3,6 +3,7 @@
  *  Self written code, but some parts based on lecture code *
  *                                                          *
  * **********************************************************/
+/** Link: https://github.com/arcuri82/web_development_and_api_design/blob/master/exercise-solutions/quiz-game/part-10/src/server/db/matches.js **/
 
 // Key: users loot id, Value: array of looBoxes Id's this user has
 const usersLootBox = new Map();

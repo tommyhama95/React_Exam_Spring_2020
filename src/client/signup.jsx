@@ -90,7 +90,8 @@ export class SignUp extends React.Component {
 
     }
 
-    // checks for password criteria using regex
+    // Checks for password criteria using regex, found on StackOverflow
+    // Link: https://stackoverflow.com/questions/19605150/regex-for-password-must-contain-at-least-eight-characters-at-least-one-number-a
     checkCriteriaForPassword = (password) => {
         const regexp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
         return regexp.test(password);

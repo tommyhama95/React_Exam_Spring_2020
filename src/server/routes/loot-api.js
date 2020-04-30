@@ -3,6 +3,7 @@
  *  Self written code, but some parts based on lecture code *
  *                                                          *
  * **********************************************************/
+/** Link: https://github.com/arcuri82/web_development_and_api_design/blob/master/exercise-solutions/quiz-game/part-10/src/server/routes/match-api.js **/
 
 const express = require("express");
 
@@ -59,6 +60,17 @@ router.post("/loots/item/remove", (req, res) => {
     } else {
         res.status(404).send();
     }
+});
+
+
+// Not used API calls
+router.put("/loots/item", function (req, res)  {
+
+});
+
+// Could have been used, but did not get to implement it
+router.delete("/loots/item", function (req, res) {
+
 });
 
 module.exports = router;

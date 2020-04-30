@@ -1,8 +1,8 @@
 /********************************************************************
  *           Fully copied and based on code from lecturer.          *
  *                      arcuri82 on Github                          *
- * Link: https://github.com/arcuri82/web_development_and_api_design *
  ********************************************************************/
+/** Link: https://github.com/arcuri82/web_development_and_api_design/blob/master/exercise-solutions/quiz-game/part-10/tests/jest-setup.js **/
 
 // Origin: shared/jest-setup.js
 

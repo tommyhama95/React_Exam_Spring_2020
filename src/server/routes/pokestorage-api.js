@@ -3,6 +3,7 @@
  *  Self written code, but some parts based on lecture code *
  *                                                          *
  * **********************************************************/
+/** Link: https://github.com/arcuri82/web_development_and_api_design/blob/master/exercise-solutions/quiz-game/part-10/src/server/routes/match-api.js **/
 
 const express = require("express");
 
@@ -41,6 +42,15 @@ router.post("/storage", (req, res) => {
     addPokemonsToStorageBox(req.body.array, req.user.storageId)
 
     res.status(201).send();
+});
+
+// Not used API calls
+router.put("/storage", function (req, res)  {
+
+});
+
+router.delete("/storage/pokemon", function (req, res) {
+
 });
 
 

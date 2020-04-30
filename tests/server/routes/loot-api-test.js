@@ -3,6 +3,7 @@
  *  Self written code, but some parts based on lecture code *
  *                                                          *
  * **********************************************************/
+/** Link: https://github.com/arcuri82/web_development_and_api_design/blob/master/exercise-solutions/quiz-game/part-10/tests/server/routes/auth-api-test.js **/
 
 const request = require("supertest");
 const {app} = require("../../../src/server/app");

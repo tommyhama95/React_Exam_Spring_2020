@@ -87,6 +87,7 @@ const pokemon = [
  *  Self written code, but some parts based on lecture code *
  *                                                          *
  * **********************************************************/
+/** Link: https://github.com/arcuri82/web_development_and_api_design/blob/master/exercise-solutions/quiz-game/part-10/src/server/db/quizzes.js **/
 
 // For some pokeball is known to hold 1 pokemon, therefore it is also
 // used in the code below.
